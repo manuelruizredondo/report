@@ -1,5 +1,5 @@
 node_modules/
 *.pdf
 out-*
-data/
 .DS_Store
+
