@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de documentación · PDF</title>
+  <link rel="stylesheet" href="/ui.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="dot"></span>
+      Generador de documentación
+    </div>
+    <div class="topbar__actions">
+      <label class="btn btn--ghost" for="fileInput">Subir .md</label>
+      <input id="fileInput" type="file" accept=".md,.markdown,.txt" hidden />
+      <button id="previewBtn" class="btn btn--secondary" type="button">Vista previa</button>
+      <button id="pdfBtn" class="btn btn--primary" type="button">Descargar PDF</button>
+      <button id="logoutBtn" class="btn btn--ghost" type="button" title="Cerrar sesión">Salir</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- Barra lateral: listado de proyectos -->
+    <aside class="sidebar">
+      <div class="sidebar__head">
+        <span>Proyectos</span>
+        <button id="newBtn" class="btn-icon" type="button" title="Nuevo proyecto">+</button>
+      </div>
+      <ul id="projectList" class="project-list"></ul>
+      <button id="sampleBtn" class="sidebar__sample" type="button">+ Crear desde ejemplo</button>
+    </aside>
+
+    <section class="pane pane--editor">
+      <div class="pane__head">
+        Markdown
+        <span id="saveStatus" class="status"></span>
+      </div>
+      <textarea id="editor" class="editor" spellcheck="false"
+        placeholder="Selecciona o crea un proyecto para empezar a escribir…"></textarea>
+    </section>
+
+    <section class="pane pane--preview">
+      <div class="pane__head">
+        Vista previa <span class="badge">16:9</span>
+        <span id="status" class="status"></span>
+      </div>
+      <iframe id="preview" class="preview" title="Vista previa"></iframe>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

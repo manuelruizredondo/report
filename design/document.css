@@ -1,0 +1,284 @@
+/* =========================================================================
+   DOCUMENTO — DIAPOSITIVAS 16:9 (apaisado)  ·  estilo Making Science
+   Usa los tokens de tokens.css.
+   ========================================================================= */
+
+@page { size: 1280px 720px; margin: 0; }
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---- Diapositiva ---- */
+.slide {
+  position: relative;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  overflow: hidden;
+  background: var(--color-bg);
+  break-after: page;
+  break-inside: avoid;
+}
+.slide:last-child { break-after: auto; }
+
+.slide__inner {
+  position: relative;
+  height: 100%;
+  padding: var(--slide-pad-y) var(--slide-pad-x);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Marca (logo de texto) abajo a la derecha en cada diapositiva */
+.slide::after {
+  content: var(--brand-mark, "");
+  position: absolute;
+  right: var(--slide-pad-x);
+  bottom: 28px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.3px;
+  color: var(--color-text-muted);
+}
+
+/* ---- Tipografía base ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
+  line-height: var(--lh-heading);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;          /* reparte las líneas de los títulos de forma equilibrada */
+}
+/* El cuerpo evita líneas huérfanas y cortes feos */
+p, li, .cover__subtitle, .eyebrow { text-wrap: pretty; }
+h1 { font-size: var(--fs-h1); font-weight: var(--fw-title); }
+h2 { font-size: var(--fs-h2); font-weight: 600; margin-top: var(--space-5); }
+h3 { font-size: var(--fs-h3); font-weight: 700; }
+h4 { font-size: var(--fs-base); font-weight: 700; color: var(--color-text-muted); }
+
+p { margin: 0 0 var(--space-4); }
+strong { font-weight: var(--fw-bold); color: var(--color-heading); }
+a { color: var(--color-pink); text-decoration: none; }
+
+ul, ol { margin: 0 0 var(--space-4); padding-left: 1.1em; }
+li { margin-bottom: var(--space-2); }
+ul li { list-style: none; position: relative; padding-left: 14px; }
+ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--color-pink);
+}
+ol li::marker { color: var(--color-text-muted); }
+
+/* Eyebrow: etiqueta pequeña rosa sobre el título */
+.eyebrow {
+  color: var(--color-pink);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  margin-bottom: var(--space-3);
+}
+
+/* Etiqueta de campo tipo "Reto:", "Objetivo:" */
+.label {
+  color: var(--color-pink);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-5) 0; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-code-bg);
+  padding: 2px 5px;
+  border-radius: var(--radius-sm);
+}
+pre {
+  background: var(--color-code-bg);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  margin: 0 0 var(--space-4);
+}
+pre code { background: none; padding: 0; font-size: 13px; line-height: 1.5; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 var(--space-4);
+  font-size: 14px;
+}
+thead th {
+  background: var(--color-heading);
+  color: #fff;
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+}
+tbody td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border); }
+tbody tr:nth-child(even) { background: var(--color-surface); }
+
+img { max-width: 100%; height: auto; }
+
+/* Callouts */
+.callout {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.callout.warn { background: #ffe8f1; }
+
+/* Dos columnas dentro de una diapositiva: {.cols} en un contenedor */
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); flex: 1; min-height: 0; }
+.panel { background: var(--color-surface); border-radius: var(--radius-md); padding: var(--space-6); }
+
+/* =========================================================================
+   TIPOS DE DIAPOSITIVA
+   ========================================================================= */
+
+/* ---- Diapositiva de contenido ---- */
+.slide--content .slide__inner { padding-top: calc(var(--slide-pad-y) + 6px); }
+/* Barra de degradado superior */
+.slide--content::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--gradient-brand);
+}
+/* El primer h1 de la diapositiva lleva un filete fino debajo */
+.slide--content h1:first-of-type {
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-5);
+}
+
+/* ---- Diapositiva de contenido en DOS COLUMNAS (`:::columns`) ----
+   El texto fluye automáticamente en dos columnas balanceadas. El eyebrow y el
+   título ocupan todo el ancho (column-span: all). Ideal cuando hay mucho texto. */
+.slide--twocol .slide__inner {
+  display: block;            /* multicol no funciona con flex */
+  column-count: 2;
+  column-gap: var(--space-7);
+  column-fill: balance;
+}
+.slide--twocol .slide__inner > .eyebrow,
+.slide--twocol .slide__inner > h1,
+.slide--twocol .slide__inner > .label:first-child {
+  column-span: all;
+}
+.slide--twocol .slide__inner > * { break-inside: avoid; }
+
+/* ---- Portada (degradado a sangre) ---- */
+.slide--cover { background: var(--gradient-brand); color: #fff; }
+.slide--cover::after { color: rgba(255,255,255,0.85); }
+.slide--cover .slide__inner { justify-content: space-between; }
+.cover__top { font-size: var(--fs-h3); font-weight: 600; letter-spacing: 0.3px; }
+.cover__center { }
+.cover__eyebrow { font-size: var(--fs-eyebrow); opacity: 0.9; margin-bottom: var(--space-3); }
+.cover__title {
+  color: inherit;          /* hereda el blanco de la portada */
+  font-size: var(--fs-cover-title);
+  font-weight: var(--fw-title);
+  line-height: 1.05;
+  margin: 0 0 var(--space-4);
+  max-width: 85%;
+}
+.cover__subtitle { font-size: var(--fs-h3); font-weight: 400; opacity: 0.92; max-width: 70%; }
+.cover__meta { display: flex; gap: var(--space-7); }
+.cover__meta-item { font-size: var(--fs-small); }
+.cover__meta-label { display: block; opacity: 0.8; margin-bottom: 2px; }
+.cover__meta-value { font-weight: 600; }
+
+/* ---- Separador de sección (morado a sangre, texto a la derecha) ---- */
+.slide--section { background: var(--color-purple); color: #fff; }
+.slide--section::after { color: rgba(255,255,255,0.85); }
+.slide--section .slide__inner {
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+.slide--section .eyebrow { color: rgba(255,255,255,0.9); }
+.slide--section h1 {
+  color: #fff;
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-title);
+  margin: 0;
+}
+
+/* =========================================================================
+   SIMULACIÓN EN PANTALLA — diapositivas 16:9 sobre fondo gris (vista previa)
+   Solo @media screen: NO afecta al PDF.
+   ========================================================================= */
+@media screen {
+  html, body { background: #3f4148; }
+  body { margin: 0; }
+
+  .page-viewport {
+    background: #3f4148;
+    min-height: 100vh;
+    padding: 24px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+  }
+  /* zoom escala la diapositiva para AJUSTARLA AL ANCHO del panel (puede ampliar) */
+  .page-stack { width: var(--slide-w); flex: 0 0 auto; zoom: var(--scale, 1); }
+
+  .slide {
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Bloques editables en la vista previa */
+  .slide [contenteditable] { outline: none; cursor: text; border-radius: 3px; }
+  .slide [contenteditable]:hover { box-shadow: 0 0 0 1px var(--color-border); }
+  .slide [contenteditable]:focus { box-shadow: 0 0 0 2px var(--color-pink); }
+
+  /* Barra de herramientas por diapositiva (solo pantalla) */
+  .slide__toolbar { position: absolute; top: 12px; left: 12px; z-index: 6; }
+  .slide__btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(20, 20, 24, 0.72);
+    border: none;
+    border-radius: 7px;
+    padding: 7px 11px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    /* Compensa el zoom para que el botón tenga tamaño constante */
+    transform: scale(calc(1 / var(--scale, 1)));
+    transform-origin: top left;
+  }
+  .slide:hover .slide__btn { opacity: 1; }
+  .slide__btn:hover { background: var(--color-pink); }
+}
+
+/* Nunca en el PDF */
+@media print { .slide__toolbar { display: none !important; } }

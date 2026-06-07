@@ -1,0 +1,18 @@
+{
+  "name": "doc-pdf-generator",
+  "version": "0.1.0",
+  "description": "Generador de documentación para clientes: Markdown -> PDF con diseño propio",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "markdown-it": "^14.1.0",
+    "markdown-it-attrs": "^4.3.1",
+    "markdown-it-anchor": "^9.2.0",
+    "puppeteer": "^23.0.0"
+  }
+}
