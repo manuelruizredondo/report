@@ -11,8 +11,6 @@ author: Equipo de diseño
 
 # 1. Encabezados
 
-
-
 Esta es la jerarquía de títulos. Úsalos para estructurar el documento de mayor a menor.
 
 # H1 — Título de documento / sección principal
